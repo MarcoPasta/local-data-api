@@ -35,7 +35,7 @@ COPY LICENSE /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements-dev.txt
+# RUN pip install -r requirements-dev.txt
 # RUN pip install .
 RUN python -m build
 
