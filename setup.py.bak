@@ -3,6 +3,7 @@ from pathlib import Path
 from setuptools import setup
 from setuptools.config import read_configuration
 
+
 PROJECT_PATH = Path(__file__).parent
 config = read_configuration(PROJECT_PATH.joinpath('setup.cfg'))
 

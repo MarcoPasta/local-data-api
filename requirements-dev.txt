@@ -1,3 +1,5 @@
 ipython
 boto3
 uvicorn
+setuptools
+build
