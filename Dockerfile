@@ -38,7 +38,7 @@ WORKDIR /app
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements-dev.txt
-# RUN pip install .
-RUN python -m build
+RUN pip install .
+# RUN python -m build
 
 COPY local_data_api /app/local_data_api
