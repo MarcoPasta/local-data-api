@@ -28,9 +28,9 @@ RUN  mkdir -p /usr/share/man/man1 \
 
 
 
-COPY ./setup.cfg /app
-COPY ./setup.py /app
-# COPY pyproject.toml /app
+# COPY ./setup.cfg /app
+# COPY ./setup.py /app
+COPY pyproject.toml /app
 COPY ./requirements-dev.txt /app
 
 COPY LICENSE /app
