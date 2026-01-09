@@ -15,7 +15,7 @@ RUN  mkdir -p /usr/share/man/man1 \
      && apt-get update && apt-get install -y default-jre libpq-dev  \
      && savedAptMark="$(apt-mark showmanual)" \
      && apt-get install -y gcc g++ curl \
-     && pip install JPype1==1.4.1 psycopg2==2.9.9\
+     && pip install JPype1 psycopg2\
      && curl -o /usr/lib/jvm/mariadb-java-client.jar \
         https://downloads.mariadb.com/Connectors/java/connector-java-${MARIADB_CLIENT_VERSION}/mariadb-java-client-${MARIADB_CLIENT_VERSION}.jar \
      && curl -o /usr/lib/jvm/postgresql-java-client.jar \
@@ -35,8 +35,8 @@ COPY LICENSE /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-# RUN pip install -r requirements-dev.txt
-RUN pip install .
+RUN pip install -r requirements-dev.txt
+# RUN pip install .
 RUN python -m build
 
 COPY local_data_api /app/local_data_api
