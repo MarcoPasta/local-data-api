@@ -26,7 +26,7 @@ RUN  mkdir -p /usr/share/man/man1 \
      && apt-get autoremove -y \
      && rm -rf /var/lib/apt/lists/*
 
-# COPY setup.py /app
+COPY setup.py /app
 COPY setup.cfg /app
 # COPY pyproject.toml /app
 COPY requirements-dev.txt /app
