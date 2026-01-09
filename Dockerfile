@@ -27,15 +27,16 @@ RUN  mkdir -p /usr/share/man/man1 \
      && rm -rf /var/lib/apt/lists/*
 
 # COPY setup.py /app
-# COPY setup.cfg /app
-COPY pyproject.toml /app
-COPY requirements-dev.txt /app
+COPY setup.cfg /app
+# COPY pyproject.toml /app
+# COPY requirements-dev.txt /app
 
 COPY LICENSE /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements-dev.txt
+# RUN pip install -r requirements-dev.txt
+RUN pip install .
 RUN python -m build
 
 COPY local_data_api /app/local_data_api

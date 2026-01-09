@@ -1,30 +1,41 @@
-[tool.black]
-line-length = 88
-skip-string-normalization = true
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 88
-
-[tool.pytest]
-filterwarnings = "ignore::DeprecationWarning:distutils"
-
-[tool.coverage.run]
-source = ["local_data_api"]
-branch = true
-
-[tool.coverage.report]
-show_missing = true
-ignore_errors = true
-exclude_lines = [
-    "if self.debug:",
-    "pragma: no cover",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:"
+[project]
+name = "local_data_api"
+authors = [
+    {name = "MarcoPasta"},
 ]
-omit = [
-    "tests/*"
-]
+version = "0.0.1"
+requires-python = ">=3.11"
+dependencies = [
+    "pytest-runner",
+    "setuptools-scm",
+    "requests",
+    'importlib-metadata; python_version<"3.10"',
+    "pydantic",
+    "email-validator",
+    "fastapi",
+    "starlette",
+    "uvicorn",
+    "SQLAlchemy",
+    "PyMySQL",
+    "JPype1",
+    "JayDeBeApi",
+    "psycopg2",
+    "pytest>=4.6",
+    "pytest-benchmark",
+    "pytest-cov",
+    "pytest-mock",
+    "mypy",
+    "black",
+    "isort",
+]   
+
+[project.optional-dependencies]
+docs = ["mkdocs", "mkdocs-material"]
+wheel = ["wheel", "twine"]
+ci = ["codecov"]
+
+
