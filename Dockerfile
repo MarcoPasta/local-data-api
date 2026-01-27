@@ -1,12 +1,8 @@
 FROM tiangolo/uvicorn-gunicorn:python3.11-slim
 
-# LABEL maintainer="https://github.com/raccoonex"
+LABEL maintainer="https://github.com/marcopasta"
 
 ENV MODULE_NAME local_data_api.main
-ENV MARIADB_CLIENT_VERSION 2.5.0
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
-ENV LD_LIBRARY_PATH /usr/lib/jvm/java-11-openjdk/jre/lib/amd64/server/
-
 
 # This app supports only single process to share connections on workers
 ENV WEB_CONCURRENCY 1
@@ -16,8 +12,6 @@ RUN  mkdir -p /usr/share/man/man1 \
      && savedAptMark="$(apt-mark showmanual)" \
      && apt-get install -y gcc g++ curl \
      && pip install JPype1 psycopg2\
-     && curl -o /usr/lib/jvm/mariadb-java-client.jar \
-        https://downloads.mariadb.com/Connectors/java/connector-java-${MARIADB_CLIENT_VERSION}/mariadb-java-client-${MARIADB_CLIENT_VERSION}.jar \
      && curl -o /usr/lib/jvm/postgresql-java-client.jar \
         https://jdbc.postgresql.org/download/postgresql-42.2.8.jar \
      && apt-mark auto '.*' > /dev/null \
@@ -27,9 +21,6 @@ RUN  mkdir -p /usr/share/man/man1 \
      && rm -rf /var/lib/apt/lists/*
 
 
-
-# COPY ./setup.cfg /app
-# COPY ./setup.py /app
 COPY pyproject.toml /app
 COPY ./requirements-dev.txt /app
 
@@ -39,6 +30,5 @@ WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements-dev.txt
 RUN pip install .
-# RUN python -m build
 
 COPY local_data_api /app/local_data_api
